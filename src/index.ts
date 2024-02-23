@@ -55,7 +55,6 @@ class Pokemon {
     const pathname = `${id}/`;
     return request({
       url: this.url,
-      pathname: pathname,
       endpoint: this.endpoint,
       pathname: pathname,
       ...options,

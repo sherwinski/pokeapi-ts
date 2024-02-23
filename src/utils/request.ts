@@ -13,8 +13,7 @@ export default async function request({
     if (options?.limit) url.searchParams.set("limit", String(options?.limit));
     if (options?.offset)
       url.searchParams.set("offset", String(options?.offset));
-
-    url.pathname += pathname;
+    if (pathname) url.pathname += pathname;
 
     const response = await fetch(url);
     if (!response.ok) {
