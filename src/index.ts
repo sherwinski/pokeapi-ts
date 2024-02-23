@@ -4,8 +4,8 @@ import type {
   TPokedex,
   TResource,
   TSearchOptions,
-  TSearchByIdOptions,
-  TSearhByNameOptions,
+  TPokemon,
+  TGeneration,
 } from "../types/Pokedex";
 import request from "./utils/request";
 
@@ -48,20 +48,24 @@ class Pokemon {
     return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
 
-  searchById({ id, ...options }: TSearchByIdOptions): Promise<PokemonResponse> {
+  searchById(
+    id: number,
+    { ...options }: TSearchOptions
+  ): Promise<PokemonResponse> {
     const pathname = `${id}/`;
     return request({
       url: this.url,
       pathname: pathname,
       endpoint: this.endpoint,
+      pathname: pathname,
       ...options,
     });
   }
 
-  searchByName({
-    name,
-    ...options
-  }: TSearhByNameOptions): Promise<PokemonResponse> {
+  searchByName(
+    name: string,
+    { ...options }: TSearchOptions
+  ): Promise<PokemonResponse> {
     const pathname = `${name}/`;
     return request({
       url: this.url,
@@ -85,10 +89,10 @@ class Generation {
     return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
 
-  searchById({
-    id,
-    ...options
-  }: TSearchByIdOptions): Promise<GenerationResponse> {
+  searchById(
+    id: number,
+    { ...options }: TSearchOptions
+  ): Promise<GenerationResponse> {
     const pathname = `${id}/`;
     return request({
       url: this.url,
@@ -98,10 +102,10 @@ class Generation {
     });
   }
 
-  searchByName({
-    name,
-    ...options
-  }: TSearhByNameOptions): Promise<GenerationResponse> {
+  searchByName(
+    name: string,
+    { ...options }: TSearchOptions
+  ): Promise<GenerationResponse> {
     const pathname = `${name}/`;
     return request({
       url: this.url,

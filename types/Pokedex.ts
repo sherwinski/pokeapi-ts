@@ -14,6 +14,13 @@ export type TResource = {
   endpoint: string;
 };
 
+
+export type TRequestParams = {
+  url: URL;
+  pathname?: string;
+  endpoint: string;
+} & { [K in keyof TSearchOptions]: TSearchOptions[K] };
+
 export type TSearchOptions =
   | {
       limit?: number;
@@ -23,17 +30,3 @@ export type TSearchOptions =
       limit: never;
       offset: never;
     };
-
-export type TRequestParams = {
-  url: URL;
-  pathname?: string;
-  endpoint: string;
-} & { [K in keyof TSearchOptions]: TSearchOptions[K] };
-
-export type TSearchByIdOptions = {
-  id: number;
-} & { [K in keyof TSearchOptions]: TSearchOptions[K] };
-
-export type TSearhByNameOptions = {
-  name: string;
-} & { [K in keyof TSearchOptions]: TSearchOptions[K] };
