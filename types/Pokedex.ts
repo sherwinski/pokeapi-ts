@@ -21,5 +21,5 @@ export type TSearchOptions =
     }
   | {
       limit: never;
-      offset: string;
+      offset: never;
     };
