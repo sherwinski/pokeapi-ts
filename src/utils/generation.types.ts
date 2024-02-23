@@ -1,5 +1,14 @@
 const GenerationSampleResponse = {
-  abilities: [""],
+  abilities: [
+    {
+      ability: {
+        name: "",
+        url: "",
+      },
+      is_hidden: true,
+      slot: 0,
+    },
+  ],
   id: 1,
   main_region: {
     name: "kanto",
