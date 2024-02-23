@@ -1,6 +1,12 @@
 import type PokemonResponse from "./utils/pokemon.types";
 import type GenerationResponse from "./utils/generation.types";
-import type { TPokedex, TResource, TSearchOptions } from "../types/Pokedex";
+import type {
+  TPokedex,
+  TResource,
+  TSearchOptions,
+  TSearchByIdOptions,
+  TSearhByNameOptions,
+} from "../types/Pokedex";
 import request from "./utils/request";
 
 export default class Pokedex {
@@ -39,17 +45,30 @@ class Pokemon {
   }
 
   search(options?: TSearchOptions): Promise<PokemonResponse> {
-    return request(this.url, { endpoint: this.endpoint });
+    return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
 
-  searchById(id: number): Promise<PokemonResponse> {
-    this.url.pathname += `${id}/`;
-    return request(this.url, { endpoint: this.endpoint });
+  searchById({ id, ...options }: TSearchByIdOptions): Promise<PokemonResponse> {
+    const pathname = `${id}/`;
+    return request({
+      url: this.url,
+      pathname: pathname,
+      endpoint: this.endpoint,
+      ...options,
+    });
   }
 
-  searchByName(name: string): Promise<PokemonResponse> {
-    this.url.pathname += `${name}/`;
-    return request(this.url, { endpoint: this.endpoint });
+  searchByName({
+    name,
+    ...options
+  }: TSearhByNameOptions): Promise<PokemonResponse> {
+    const pathname = `${name}/`;
+    return request({
+      url: this.url,
+      pathname: pathname,
+      endpoint: this.endpoint,
+      ...options,
+    });
   }
 }
 
@@ -62,17 +81,33 @@ class Generation {
     this.url = new URL(`${baseUrl}${apiVersion}/${endpoint}/`);
   }
 
-  search(): Promise<GenerationResponse> {
-    return request(this.url, { endpoint: this.endpoint });
+  search(options?: TSearchOptions): Promise<GenerationResponse> {
+    return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
 
-  searchById(id: number): Promise<GenerationResponse> {
-    this.url.pathname += `${id}/`;
-    return request(this.url, { endpoint: this.endpoint });
+  searchById({
+    id,
+    ...options
+  }: TSearchByIdOptions): Promise<GenerationResponse> {
+    const pathname = `${id}/`;
+    return request({
+      url: this.url,
+      pathname: pathname,
+      endpoint: this.endpoint,
+      ...options,
+    });
   }
 
-  searchByName(name: string): Promise<GenerationResponse> {
-    this.url.pathname += `${name}/`;
-    return request(this.url, { endpoint: this.endpoint });
+  searchByName({
+    name,
+    ...options
+  }: TSearhByNameOptions): Promise<GenerationResponse> {
+    const pathname = `${name}/`;
+    return request({
+      url: this.url,
+      pathname: pathname,
+      endpoint: this.endpoint,
+      ...options,
+    });
   }
 }
