@@ -10,9 +10,9 @@ export default async function request({
 }: TRequestParams): Promise<any> {
   // TODO make a more generic return type
   try {
-    if (options?.limit) url.searchParams.set("limit", String(options?.limit));
-    if (options?.offset)
-      url.searchParams.set("offset", String(options?.offset));
+    const { offset, limit } = options;
+    if (limit) url.searchParams.set("limit", String(limit));
+    if (offset) url.searchParams.set("offset", String(offset));
     if (pathname) url.pathname += pathname;
 
     const response = await fetch(url);
