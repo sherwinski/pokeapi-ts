@@ -41,7 +41,7 @@ class Resource<T extends TResource> {
 
   constructor({ apiVersion, baseUrl, endpoint }: T) {
     this.endpoint = endpoint;
-    this.url = new URL(`${baseUrl}${apiVersion}/${endpoint}/`);
+    this.url = new URL(`${baseUrl}${apiVersion}/`);
   }
 }
 

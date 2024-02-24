@@ -9,13 +9,11 @@ export default async function request({
   ...options
 }: TRequestParams): Promise<any> {
   // TODO make a more generic return type
+  // Requires fixing types e.g. pokemon.types.ts
   try {
-    const { offset, limit } = options;
-    if (limit) url.searchParams.set("limit", String(limit));
-    if (offset) url.searchParams.set("offset", String(offset));
-    if (identifier) url.pathname += identifier;
+    const pokeUrl = constructUrl({ url, identifier, endpoint, ...options });
+    const response = await fetch(pokeUrl);
 
-    const response = await fetch(url);
     if (!response.ok) {
       if (response.status === 404) {
         throw new PokemonApiError({
@@ -34,4 +32,21 @@ export default async function request({
   } catch (err) {
     return Promise.reject(err);
   }
+}
+
+function constructUrl({
+  url,
+  identifier,
+  endpoint,
+  ...options
+}: TRequestParams) {
+  const urlCopy = new URL(url);
+  urlCopy.pathname += endpoint + "/";
+
+  const { offset, limit } = options;
+  if (limit) urlCopy.searchParams.set("limit", String(limit));
+  if (offset) urlCopy.searchParams.set("offset", String(offset));
+  if (identifier) urlCopy.pathname += identifier;
+
+  return urlCopy;
 }
