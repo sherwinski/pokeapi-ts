@@ -18,7 +18,7 @@ export default class Pokedex {
     this.apiVersion = options?.apiVersion || "2";
   }
 
-  pokemon(): Pokemon {
+  get pokemon(): Pokemon {
     return new Pokemon({
       apiVersion: this.apiVersion,
       baseUrl: this.baseUrl,
@@ -26,7 +26,7 @@ export default class Pokedex {
     });
   }
 
-  generation(): Generation {
+  get generation(): Generation {
     return new Generation({
       apiVersion: this.apiVersion,
       baseUrl: this.baseUrl,
