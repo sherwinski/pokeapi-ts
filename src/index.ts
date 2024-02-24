@@ -51,7 +51,10 @@ interface IResource<T> {
   searchByName?(name: string, options: TSearchOptions): Promise<T>;
 }
 
-class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
+export class Pokemon
+  extends Resource<TPokemon>
+  implements IResource<PokemonResponse>
+{
   search(options?: TSearchOptions): Promise<PokemonResponse> {
     return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
@@ -80,7 +83,7 @@ class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
   }
 }
 
-class Generation
+export class Generation
   extends Resource<TGeneration>
   implements IResource<GenerationResponse>
 {
@@ -114,3 +117,6 @@ class Generation
     });
   }
 }
+
+export type TPokemonClass = typeof Pokemon;
+export type TGenerationClass = typeof Generation;
