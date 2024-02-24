@@ -35,15 +35,23 @@ export default class Pokedex {
   }
 }
 
-class Pokemon {
-  url: URL;
-  endpoint: string;
+class Resource<T extends TResource> {
+  protected url: URL;
+  protected endpoint: string;
 
-  constructor({ apiVersion, baseUrl, endpoint }: TResource) {
+  constructor({ apiVersion, baseUrl, endpoint }: T) {
     this.endpoint = endpoint;
     this.url = new URL(`${baseUrl}${apiVersion}/${endpoint}/`);
   }
+}
 
+interface IResource<T> {
+  search(options?: TSearchOptions): Promise<T>;
+  searchById?(id: number, options: TSearchOptions): Promise<T>;
+  searchByName?(name: string, options: TSearchOptions): Promise<T>;
+}
+
+class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
   search(options?: TSearchOptions): Promise<PokemonResponse> {
     return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
@@ -75,15 +83,10 @@ class Pokemon {
   }
 }
 
-class Generation {
-  url: URL;
-  endpoint: string;
-
-  constructor({ apiVersion, baseUrl, endpoint }: TResource) {
-    this.endpoint = endpoint;
-    this.url = new URL(`${baseUrl}${apiVersion}/${endpoint}/`);
-  }
-
+class Generation
+  extends Resource<TGeneration>
+  implements IResource<GenerationResponse>
+{
   search(options?: TSearchOptions): Promise<GenerationResponse> {
     return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
