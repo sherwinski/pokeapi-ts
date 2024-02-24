@@ -11,18 +11,24 @@ export type TPokedex =
       baseUrl: string;
     };
 
-export type TResource = {
+export interface TResource {
   apiVersion: string;
   baseUrl: string;
   endpoint: string;
-};
+}
 
-export type TPokemon = {
+interface TPokemonResource extends TResource {
   endpoint: "pokemon";
-} & { [K in keyof TResource]: TResource[K] };
+}
 
-export type TGeneration = TResource & {
+export type TPokemon = { [K in keyof TPokemonResource]: TPokemonResource[K] };
+
+interface TGenerationResource extends TResource {
   endpoint: "generation";
+}
+
+export type TGeneration = {
+  [K in keyof TGenerationResource]: TGenerationResource[K];
 };
 
 /**
