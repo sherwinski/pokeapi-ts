@@ -2,6 +2,7 @@ import Pokedex, { TPokemonClass } from "../../src/index";
 import PokemonResponse, {
   PokemonSampleResponse,
 } from "../../src/utils/pokemon.types";
+import { PokemonApiError } from "../../src/error";
 
 describe("Pokemon Class", () => {
   let pokemon: InstanceType<TPokemonClass>;
@@ -38,10 +39,12 @@ describe("Pokemon Class", () => {
 
   describe("error handling", () => {
     it("throws an error when invoking searchById() with an invalid id", async () => {
-      await expect(pokemon.searchById(-1)).rejects.toThrow();
+      await expect(pokemon.searchById(-1)).rejects.toThrow(PokemonApiError);
     });
     it("throws an error when invoking searchByName() with an invalid name", async () => {
-      await expect(pokemon.searchByName("Agumon")).rejects.toThrow();
+      await expect(pokemon.searchByName("Agumon")).rejects.toThrow(
+        PokemonApiError
+      );
     });
   });
 });

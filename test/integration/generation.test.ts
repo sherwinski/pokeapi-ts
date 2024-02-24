@@ -2,6 +2,7 @@ import Pokedex, { TGenerationClass } from "../../src/index";
 import GenerationResponse, {
   GenerationSampleResponse,
 } from "../../src/utils/generation.types";
+import { PokemonApiError } from "../../src/error";
 
 describe("Pokemon class", () => {
   let generation: InstanceType<TGenerationClass>;
@@ -9,6 +10,7 @@ describe("Pokemon class", () => {
   beforeAll(() => {
     generation = new Pokedex().generation;
   });
+
   describe("endpoint methods", () => {
     it("returns data in the expected shape when invoking search()", async () => {
       const data: GenerationResponse = await generation.search();
@@ -39,10 +41,12 @@ describe("Pokemon class", () => {
 
   describe("error handling", () => {
     it("throws an error when invoking searchById() with an invalid id", async () => {
-      await expect(generation.searchById(-1)).rejects.toThrow();
+      await expect(generation.searchById(-1)).rejects.toThrow(PokemonApiError);
     });
     it("throws an error when invoking searchByName() with an invalid name", async () => {
-      await expect(generation.searchByName("generation-1")).rejects.toThrow();
+      await expect(generation.searchByName("generation-1")).rejects.toThrow(
+        PokemonApiError
+      );
     });
   });
 });
