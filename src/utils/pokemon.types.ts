@@ -1,4 +1,4 @@
-const PokemonSampleResponse = {
+export const PokemonSampleResponse = {
   abilities: [
     {
       ability: {
