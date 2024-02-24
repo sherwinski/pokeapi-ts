@@ -10,8 +10,8 @@ import type {
 import request from "./utils/request";
 
 export default class Pokedex {
-  baseUrl: string;
-  apiVersion: string;
+  private baseUrl: string;
+  private apiVersion: string;
 
   constructor(options?: TPokedex) {
     this.baseUrl = options?.baseUrl || "https://pokeapi.co/api/v";
