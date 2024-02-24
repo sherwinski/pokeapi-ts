@@ -8,7 +8,7 @@ export type TPokedex =
     }
   | {
       apiVersion: never;
-      baseUrl: string;
+      baseUrl: never;
     };
 
 export interface TResource {
