@@ -56,10 +56,7 @@ class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
     return request({ url: this.url, endpoint: this.endpoint, ...options });
   }
 
-  searchById(
-    id: number,
-    { ...options }: TSearchOptions
-  ): Promise<PokemonResponse> {
+  searchById(id: number, options?: TSearchOptions): Promise<PokemonResponse> {
     const identifier = `${id}/`;
     return request({
       url: this.url,
@@ -71,7 +68,7 @@ class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
 
   searchByName(
     name: string,
-    { ...options }: TSearchOptions
+    options?: TSearchOptions
   ): Promise<PokemonResponse> {
     const identifier = `${name}/`;
     return request({
@@ -93,7 +90,7 @@ class Generation
 
   searchById(
     id: number,
-    { ...options }: TSearchOptions
+    options?: TSearchOptions
   ): Promise<GenerationResponse> {
     const identifier = `${id}/`;
     return request({
@@ -106,7 +103,7 @@ class Generation
 
   searchByName(
     name: string,
-    { ...options }: TSearchOptions
+    options?: TSearchOptions
   ): Promise<GenerationResponse> {
     const identifier = `${name}/`;
     return request({
