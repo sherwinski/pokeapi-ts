@@ -15,7 +15,7 @@ export default class Pokedex {
 
   constructor(options?: TPokedex) {
     this.baseUrl = options?.baseUrl || "https://pokeapi.co/api/v";
-    this.apiVersion = options?.apiVersion || "2";
+    this.apiVersion = options?.apiVersion ? String(options?.apiVersion) : "2";
   }
 
   get pokemon(): Pokemon {

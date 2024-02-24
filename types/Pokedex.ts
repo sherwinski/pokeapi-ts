@@ -3,7 +3,7 @@
  */
 export type TPokedex =
   | {
-      apiVersion: string;
+      apiVersion: number;
       baseUrl: string;
     }
   | {
