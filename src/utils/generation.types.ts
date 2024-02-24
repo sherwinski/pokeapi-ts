@@ -1,4 +1,4 @@
-const GenerationSampleResponse = {
+export const GenerationSampleResponse = {
   abilities: [
     {
       ability: {
