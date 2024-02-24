@@ -4,7 +4,7 @@ import { TRequestParams } from "../../types/Pokedex";
 
 export default async function request({
   url,
-  pathname,
+  identifier,
   endpoint,
   ...options
 }: TRequestParams): Promise<any> {
@@ -13,7 +13,7 @@ export default async function request({
     const { offset, limit } = options;
     if (limit) url.searchParams.set("limit", String(limit));
     if (offset) url.searchParams.set("offset", String(offset));
-    if (pathname) url.pathname += pathname;
+    if (identifier) url.pathname += identifier;
 
     const response = await fetch(url);
     if (!response.ok) {

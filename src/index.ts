@@ -60,11 +60,11 @@ class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
     id: number,
     { ...options }: TSearchOptions
   ): Promise<PokemonResponse> {
-    const pathname = `${id}/`;
+    const identifier = `${id}/`;
     return request({
       url: this.url,
       endpoint: this.endpoint,
-      pathname: pathname,
+      identifier: identifier,
       ...options,
     });
   }
@@ -73,10 +73,10 @@ class Pokemon extends Resource<TPokemon> implements IResource<PokemonResponse> {
     name: string,
     { ...options }: TSearchOptions
   ): Promise<PokemonResponse> {
-    const pathname = `${name}/`;
+    const identifier = `${name}/`;
     return request({
       url: this.url,
-      pathname: pathname,
+      identifier: identifier,
       endpoint: this.endpoint,
       ...options,
     });
@@ -95,10 +95,10 @@ class Generation
     id: number,
     { ...options }: TSearchOptions
   ): Promise<GenerationResponse> {
-    const pathname = `${id}/`;
+    const identifier = `${id}/`;
     return request({
       url: this.url,
-      pathname: pathname,
+      identifier: identifier,
       endpoint: this.endpoint,
       ...options,
     });
@@ -108,10 +108,10 @@ class Generation
     name: string,
     { ...options }: TSearchOptions
   ): Promise<GenerationResponse> {
-    const pathname = `${name}/`;
+    const identifier = `${name}/`;
     return request({
       url: this.url,
-      pathname: pathname,
+      identifier: identifier,
       endpoint: this.endpoint,
       ...options,
     });

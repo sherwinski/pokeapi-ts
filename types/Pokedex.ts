@@ -31,7 +31,7 @@ export type TGeneration = TResource & {
 
 export type TRequestParams = {
   url: URL;
-  pathname?: string;
+  identifier?: string;
   endpoint: string;
 } & { [K in keyof TSearchOptions]: TSearchOptions[K] };
 
