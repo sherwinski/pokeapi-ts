@@ -1,5 +1,3 @@
-import type PokemonResponse from "./utils/pokemon.types";
-import type GenerationResponse from "./utils/generation.types";
 import type {
   TPokedex,
   TResource,
@@ -8,6 +6,11 @@ import type {
   TGeneration,
 } from "../types/Pokedex";
 import request from "./utils/request";
+import {
+  NamedAPIResourceList,
+  Pokemon as PokemonResourceResponse,
+  Generation as GenerationResourceResponse,
+} from "pokenode-ts";
 
 export default class Pokedex {
   private baseUrl: string;
@@ -45,76 +48,87 @@ class Resource<T extends TResource> {
   }
 }
 
-interface IResource<T> {
+interface IResource<T, U> {
   search(options?: TSearchOptions): Promise<T>;
-  searchById?(id: number, options: TSearchOptions): Promise<T>;
-  searchByName?(name: string, options: TSearchOptions): Promise<T>;
+  searchById?(id: number, options: TSearchOptions): Promise<U>;
+  searchByName?(name: string, options: TSearchOptions): Promise<U>;
 }
 
 export class Pokemon
   extends Resource<TPokemon>
-  implements IResource<PokemonResponse>
+  implements IResource<NamedAPIResourceList, PokemonResourceResponse>
 {
-  search(options?: TSearchOptions): Promise<PokemonResponse> {
-    return request({ url: this.url, endpoint: this.endpoint, ...options });
-  }
-
-  searchById(id: number, options?: TSearchOptions): Promise<PokemonResponse> {
-    const identifier = `${id}/`;
+  search(options?: TSearchOptions): Promise<NamedAPIResourceList> {
     return request({
       url: this.url,
       endpoint: this.endpoint,
-      identifier: identifier,
       ...options,
-    });
-  }
-
-  searchByName(
-    name: string,
-    options?: TSearchOptions
-  ): Promise<PokemonResponse> {
-    const identifier = `${name}/`;
-    return request({
-      url: this.url,
-      identifier: identifier,
-      endpoint: this.endpoint,
-      ...options,
-    });
-  }
-}
-
-export class Generation
-  extends Resource<TGeneration>
-  implements IResource<GenerationResponse>
-{
-  search(options?: TSearchOptions): Promise<GenerationResponse> {
-    return request({ url: this.url, endpoint: this.endpoint, ...options });
+    }) as Promise<NamedAPIResourceList>;
   }
 
   searchById(
     id: number,
     options?: TSearchOptions
-  ): Promise<GenerationResponse> {
+  ): Promise<PokemonResourceResponse> {
     const identifier = `${id}/`;
     return request({
       url: this.url,
-      identifier: identifier,
       endpoint: this.endpoint,
+      identifier: identifier,
       ...options,
-    });
+    }) as Promise<PokemonResourceResponse>;
   }
 
   searchByName(
     name: string,
     options?: TSearchOptions
-  ): Promise<GenerationResponse> {
+  ): Promise<PokemonResourceResponse> {
     const identifier = `${name}/`;
     return request({
       url: this.url,
       identifier: identifier,
       endpoint: this.endpoint,
       ...options,
-    });
+    }) as Promise<PokemonResourceResponse>;
+  }
+}
+
+export class Generation
+  extends Resource<TGeneration>
+  implements IResource<NamedAPIResourceList, GenerationResourceResponse>
+{
+  search(options?: TSearchOptions): Promise<NamedAPIResourceList> {
+    return request({
+      url: this.url,
+      endpoint: this.endpoint,
+      ...options,
+    }) as Promise<NamedAPIResourceList>;
+  }
+
+  searchById(
+    id: number,
+    options?: TSearchOptions
+  ): Promise<GenerationResourceResponse> {
+    const identifier = `${id}/`;
+    return request({
+      url: this.url,
+      identifier: identifier,
+      endpoint: this.endpoint,
+      ...options,
+    }) as Promise<GenerationResourceResponse>;
+  }
+
+  searchByName(
+    name: string,
+    options?: TSearchOptions
+  ): Promise<GenerationResourceResponse> {
+    const identifier = `${name}/`;
+    return request({
+      url: this.url,
+      identifier: identifier,
+      endpoint: this.endpoint,
+      ...options,
+    }) as Promise<GenerationResourceResponse>;
   }
 }
 

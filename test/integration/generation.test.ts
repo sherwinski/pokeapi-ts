@@ -3,6 +3,11 @@ import GenerationResponse, {
   GenerationSampleResponse,
 } from "../../src/utils/generation.types";
 import { PokemonApiError } from "../../src/error";
+import {
+  NamedAPIResourceList,
+  Pokemon as PokemonResourceResponse,
+  Generation as GenerationResourceResponse,
+} from "pokenode-ts";
 
 describe("Pokemon class", () => {
   let generation: InstanceType<TGenerationClass>;
@@ -15,7 +20,7 @@ describe("Pokemon class", () => {
 
   describe("endpoint methods", () => {
     it("returns data in the expected shape when invoking search()", async () => {
-      const data: GenerationResponse = await generation.search();
+      const data: NamedAPIResourceList = await generation.search();
 
       expect(data).toHaveProperty("count");
       expect(data).toHaveProperty("next");
@@ -24,18 +29,17 @@ describe("Pokemon class", () => {
     });
 
     it("returns data in the expected shape when invoking search with pagination options", async () => {
-      const data: GenerationResponse = await generation.search(options);
+      const data: NamedAPIResourceList = await generation.search(options);
 
       expect(data).toHaveProperty("count");
       expect(data).toHaveProperty("next");
       expect(data).toHaveProperty("previous");
       expect(data).toHaveProperty("results");
-      //@ts-ignore TODO fix types
       expect(data?.results.length).toBe(limit);
     });
 
     it("returns data in the expected shape when invoking searchById()", async () => {
-      const data: GenerationResponse = await generation.searchById(1);
+      const data: GenerationResourceResponse = await generation.searchById(1);
 
       for (const field in GenerationSampleResponse) {
         expect(data).toHaveProperty(field);
@@ -43,7 +47,10 @@ describe("Pokemon class", () => {
     });
 
     it("returns data in the expected shape when invoking searchById with pagination options", async () => {
-      const data: GenerationResponse = await generation.searchById(1, options);
+      const data: GenerationResourceResponse = await generation.searchById(
+        1,
+        options
+      );
 
       for (const field in GenerationSampleResponse) {
         expect(data).toHaveProperty(field);
@@ -51,7 +58,7 @@ describe("Pokemon class", () => {
     });
 
     it("returns data in the expected shape when invoking searchByName()", async () => {
-      const data: GenerationResponse = await generation.searchByName(
+      const data: GenerationResourceResponse = await generation.searchByName(
         "generation-i"
       );
 
@@ -61,7 +68,7 @@ describe("Pokemon class", () => {
     });
 
     it("returns data in the expected shape when invoking searchByName with pagination options", async () => {
-      const data: GenerationResponse = await generation.searchByName(
+      const data: GenerationResourceResponse = await generation.searchByName(
         "generation-i",
         options
       );

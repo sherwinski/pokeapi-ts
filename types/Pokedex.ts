@@ -1,3 +1,9 @@
+import {
+  NamedAPIResourceList,
+  Pokemon as PokemonResourceResponse,
+  Generation as GenerationResourceResponse,
+} from "pokenode-ts";
+
 /**
  * Constructor type definitions
  */
@@ -50,3 +56,8 @@ export type TSearchOptions =
       limit: never;
       offset: never;
     };
+
+export type TRequestResponse =
+  | NamedAPIResourceList
+  | PokemonResourceResponse
+  | GenerationResourceResponse;

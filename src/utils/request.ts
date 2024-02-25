@@ -1,15 +1,13 @@
 import { PokemonApiError } from "../error";
 import { PokemonApiErrorCodes } from "../../types/Error";
-import { TRequestParams } from "../../types/Pokedex";
+import { TRequestParams, TRequestResponse } from "../../types/Pokedex";
 
 export default async function request({
   url,
   identifier,
   endpoint,
   ...options
-}: TRequestParams): Promise<any> {
-  // TODO make a more generic return type
-  // Requires fixing types e.g. pokemon.types.ts
+}: TRequestParams): Promise<TRequestResponse> {
   try {
     const pokeUrl = constructUrl({ url, identifier, endpoint, ...options });
     const response = await fetch(pokeUrl);
