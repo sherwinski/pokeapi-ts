@@ -1,13 +1,14 @@
-import Pokedex, { TGenerationClass } from "../../src/index";
+import Pokedex from "../../src/Pokedex";
+import TGenerationClass from "../../src/Generation";
 import { GenerationSampleResponse } from "../../src/utils/generation.types";
-import { PokemonApiError } from "../../src/error";
+import { PokemonApiError } from "../../src/utils/error";
 import {
   NamedAPIResourceList,
   Generation as GenerationResourceResponse,
 } from "pokenode-ts";
 
 describe("Pokemon class", () => {
-  let generation: InstanceType<TGenerationClass>;
+  let generation: TGenerationClass;
   const limit = 2;
   const options = { offset: 1, limit: limit };
 

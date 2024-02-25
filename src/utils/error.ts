@@ -1,4 +1,4 @@
-import { PokemonApiErrorDetails } from "../types/Error";
+import { PokemonApiErrorDetails } from "../../types/Error";
 
 export class PokemonApiError extends Error {
   constructor({ code, details }: PokemonApiErrorDetails) {

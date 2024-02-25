@@ -1,4 +1,4 @@
-import Pokedex from "../../src/index";
+import Pokedex from "../../src/Pokedex";
 
 describe("Pokedex class", () => {
   let pokedex: Pokedex;

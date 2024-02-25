@@ -1,4 +1,4 @@
-import { PokemonApiError } from "../error";
+import { PokemonApiError } from "./error";
 import { PokemonApiErrorCodes } from "../../types/Error";
 import { TRequestParams, TRequestResponse } from "../../types/Pokedex";
 

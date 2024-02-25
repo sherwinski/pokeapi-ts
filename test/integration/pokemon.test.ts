@@ -1,6 +1,7 @@
-import Pokedex, { TPokemonClass } from "../../src/index";
+import Pokedex from "../../src/Pokedex";
+import type TPokemonClass from "../../src/Pokemon";
 import { PokemonSampleResponse } from "../../src/utils/pokemon.types";
-import { PokemonApiError } from "../../src/error";
+import { PokemonApiError } from "../../src/utils/error";
 
 import {
   NamedAPIResourceList,
@@ -9,7 +10,7 @@ import {
 } from "pokenode-ts";
 
 describe("Pokemon Class", () => {
-  let pokemon: InstanceType<TPokemonClass>;
+  let pokemon: TPokemonClass;
   const limit = 2;
   const options = { offset: 1, limit: limit };
 
