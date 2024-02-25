@@ -1,8 +1,8 @@
 {
-  "name": "pokeapi-ts",
+  "name": "@sherwinski/pokeapi-ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A TypeScript SDK that wraps the RESTful Pokemon API for all things from the Pokemon world and games",
+  "main": "dist/src/Pokedex.js",
   "scripts": {
     "clean": "rimraf ./dist",
     "prebuild": "pnpm run clean",
@@ -12,8 +12,8 @@
     "test:watch": "jest --watch"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Sherwin Heydarbeygi <https://github.com/sherwinski>",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.20",
@@ -22,5 +22,12 @@
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
-  }
+  },
+  "files": [
+    "dist",
+    "types",
+    "README",
+    "LICENSE",
+    "CHANGELOG"
+  ]
 }
