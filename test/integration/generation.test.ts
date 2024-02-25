@@ -1,11 +1,8 @@
 import Pokedex, { TGenerationClass } from "../../src/index";
-import GenerationResponse, {
-  GenerationSampleResponse,
-} from "../../src/utils/generation.types";
+import { GenerationSampleResponse } from "../../src/utils/generation.types";
 import { PokemonApiError } from "../../src/error";
 import {
   NamedAPIResourceList,
-  Pokemon as PokemonResourceResponse,
   Generation as GenerationResourceResponse,
 } from "pokenode-ts";
 
@@ -46,31 +43,9 @@ describe("Pokemon class", () => {
       }
     });
 
-    it("returns data in the expected shape when invoking searchById with pagination options", async () => {
-      const data: GenerationResourceResponse = await generation.searchById(
-        1,
-        options
-      );
-
-      for (const field in GenerationSampleResponse) {
-        expect(data).toHaveProperty(field);
-      }
-    });
-
     it("returns data in the expected shape when invoking searchByName()", async () => {
       const data: GenerationResourceResponse = await generation.searchByName(
         "generation-i"
-      );
-
-      for (const field in GenerationSampleResponse) {
-        expect(data).toHaveProperty(field);
-      }
-    });
-
-    it("returns data in the expected shape when invoking searchByName with pagination options", async () => {
-      const data: GenerationResourceResponse = await generation.searchByName(
-        "generation-i",
-        options
       );
 
       for (const field in GenerationSampleResponse) {

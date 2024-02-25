@@ -1,7 +1,5 @@
 import Pokedex, { TPokemonClass } from "../../src/index";
-import PokemonResponse, {
-  PokemonSampleResponse,
-} from "../../src/utils/pokemon.types";
+import { PokemonSampleResponse } from "../../src/utils/pokemon.types";
 import { PokemonApiError } from "../../src/error";
 
 import {
@@ -47,31 +45,9 @@ describe("Pokemon Class", () => {
       }
     });
 
-    it("returns data in the expected shape when invoking searchById with pagination options", async () => {
-      const data: PokemonResourceResponse = await pokemon.searchById(
-        1,
-        options
-      );
-
-      for (const field in PokemonSampleResponse) {
-        expect(data).toHaveProperty(field);
-      }
-    });
-
     it("returns data in the expected shape when invoking searchByName()", async () => {
       const data: PokemonResourceResponse = await pokemon.searchByName(
         "pikachu"
-      );
-
-      for (const field in PokemonSampleResponse) {
-        expect(data).toHaveProperty(field);
-      }
-    });
-
-    it("returns data in the expected shape when invoking searchByName with pagination options", async () => {
-      const data: PokemonResourceResponse = await pokemon.searchByName(
-        "pikachu",
-        options
       );
 
       for (const field in PokemonSampleResponse) {

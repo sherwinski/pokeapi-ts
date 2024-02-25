@@ -50,8 +50,8 @@ class Resource<T extends TResource> {
 
 interface IResource<T, U> {
   search(options?: TSearchOptions): Promise<T>;
-  searchById?(id: number, options: TSearchOptions): Promise<U>;
-  searchByName?(name: string, options: TSearchOptions): Promise<U>;
+  searchById?(id: number): Promise<U>;
+  searchByName?(name: string): Promise<U>;
 }
 
 export class Pokemon
@@ -66,29 +66,21 @@ export class Pokemon
     }) as Promise<NamedAPIResourceList>;
   }
 
-  searchById(
-    id: number,
-    options?: TSearchOptions
-  ): Promise<PokemonResourceResponse> {
+  searchById(id: number): Promise<PokemonResourceResponse> {
     const identifier = `${id}/`;
     return request({
       url: this.url,
       endpoint: this.endpoint,
       identifier: identifier,
-      ...options,
     }) as Promise<PokemonResourceResponse>;
   }
 
-  searchByName(
-    name: string,
-    options?: TSearchOptions
-  ): Promise<PokemonResourceResponse> {
+  searchByName(name: string): Promise<PokemonResourceResponse> {
     const identifier = `${name}/`;
     return request({
       url: this.url,
       identifier: identifier,
       endpoint: this.endpoint,
-      ...options,
     }) as Promise<PokemonResourceResponse>;
   }
 }
@@ -105,29 +97,21 @@ export class Generation
     }) as Promise<NamedAPIResourceList>;
   }
 
-  searchById(
-    id: number,
-    options?: TSearchOptions
-  ): Promise<GenerationResourceResponse> {
+  searchById(id: number): Promise<GenerationResourceResponse> {
     const identifier = `${id}/`;
     return request({
       url: this.url,
       identifier: identifier,
       endpoint: this.endpoint,
-      ...options,
     }) as Promise<GenerationResourceResponse>;
   }
 
-  searchByName(
-    name: string,
-    options?: TSearchOptions
-  ): Promise<GenerationResourceResponse> {
+  searchByName(name: string): Promise<GenerationResourceResponse> {
     const identifier = `${name}/`;
     return request({
       url: this.url,
       identifier: identifier,
       endpoint: this.endpoint,
-      ...options,
     }) as Promise<GenerationResourceResponse>;
   }
 }
