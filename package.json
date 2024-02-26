@@ -1,6 +1,6 @@
 {
   "name": "@sherwinski/pokeapi-ts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A TypeScript SDK that wraps the RESTful Pokemon API for all things from the Pokemon world and games",
   "main": "dist/src/Pokedex.js",
   "types": "types/index.d.ts",
