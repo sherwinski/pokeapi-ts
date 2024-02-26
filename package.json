@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A TypeScript SDK that wraps the RESTful Pokemon API for all things from the Pokemon world and games",
   "main": "dist/src/Pokedex.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "clean": "rimraf ./dist",
     "prebuild": "pnpm run clean",
