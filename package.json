@@ -10,7 +10,8 @@
     "build": "pnpm run prebuild && tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "Sherwin Heydarbeygi <https://github.com/sherwinski>",
