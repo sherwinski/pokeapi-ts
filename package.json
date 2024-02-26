@@ -19,7 +19,6 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.20",
     "jest": "^29.7.0",
-    "pokenode-ts": "^1.20.0",
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
@@ -30,5 +29,8 @@
     "README",
     "LICENSE",
     "CHANGELOG"
-  ]
+  ],
+  "dependencies": {
+    "pokenode-ts": "^1.20.0"
+  }
 }
