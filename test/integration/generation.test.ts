@@ -45,9 +45,8 @@ describe("Pokemon class", () => {
     });
 
     it("returns data in the expected shape when invoking searchByName()", async () => {
-      const data: GenerationResourceResponse = await generation.searchByName(
-        "generation-i"
-      );
+      const data: GenerationResourceResponse =
+        await generation.searchByName("generation-i");
 
       for (const field in GenerationSampleResponse) {
         expect(data).toHaveProperty(field);
@@ -62,7 +61,7 @@ describe("Pokemon class", () => {
 
     it("throws an error when invoking searchByName() with an invalid name", async () => {
       await expect(generation.searchByName("generation-1")).rejects.toThrow(
-        PokemonApiError
+        PokemonApiError,
       );
     });
   });

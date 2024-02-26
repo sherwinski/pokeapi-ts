@@ -19,7 +19,7 @@ describe("Request utility", () => {
         Promise.resolve({
           ok: true,
           json: () => Promise.resolve({}),
-        })
+        }),
       );
     });
 
@@ -71,7 +71,7 @@ describe("Request utility", () => {
           ok: false,
           status: 404,
           json: () => Promise.reject({}),
-        })
+        }),
       );
 
       const expected = `ResourceNotFound: ${endpoint} not found.`;
@@ -80,7 +80,7 @@ describe("Request utility", () => {
           url: url,
           identifier: identifier,
           endpoint: endpoint,
-        })
+        }),
       ).rejects.toThrow(expected);
     });
 
@@ -89,7 +89,7 @@ describe("Request utility", () => {
         Promise.resolve({
           ok: false,
           status: 500,
-        })
+        }),
       );
 
       await expect(
@@ -97,7 +97,7 @@ describe("Request utility", () => {
           url: url,
           identifier: identifier,
           endpoint: endpoint,
-        })
+        }),
       ).rejects.toThrow("Unexpected server error.");
     });
   });

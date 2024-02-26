@@ -47,9 +47,8 @@ describe("Pokemon Class", () => {
     });
 
     it("returns data in the expected shape when invoking searchByName()", async () => {
-      const data: PokemonResourceResponse = await pokemon.searchByName(
-        "pikachu"
-      );
+      const data: PokemonResourceResponse =
+        await pokemon.searchByName("pikachu");
 
       for (const field in PokemonSampleResponse) {
         expect(data).toHaveProperty(field);
@@ -64,7 +63,7 @@ describe("Pokemon Class", () => {
 
     it("throws an error when invoking searchByName() with an invalid name", async () => {
       await expect(pokemon.searchByName("Agumon")).rejects.toThrow(
-        PokemonApiError
+        PokemonApiError,
       );
     });
   });
